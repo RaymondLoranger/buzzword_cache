@@ -6,10 +6,6 @@ Buzzword Cache for the _Multi-Player Bingo_ game. Returns a map of buzzwords.
 
 ## Installation
 
-**TODO: Add description**
-
-## Installation
-
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 by adding `buzzword_cache` to your list of dependencies in `mix.exs`:
 
