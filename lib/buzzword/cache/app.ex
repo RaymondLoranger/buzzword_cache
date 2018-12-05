@@ -2,7 +2,6 @@ defmodule Buzzword.Cache.App do
   @moduledoc false
 
   use Application
-  use PersistConfig
 
   alias __MODULE__
   alias __MODULE__.LogReset
