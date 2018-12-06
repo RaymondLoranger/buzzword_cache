@@ -4,8 +4,8 @@ defmodule Buzzword.Cache.App do
   use Application
 
   alias __MODULE__
-  alias __MODULE__.LogReset
   alias Buzzword.Cache.Server
+  alias Log.Reset
 
   @info_path Application.get_env(:logger, :info_log)[:path]
   @warn_path Application.get_env(:logger, :warn_log)[:path]
@@ -13,7 +13,7 @@ defmodule Buzzword.Cache.App do
   @spec start(Application.start_type(), term) :: {:ok, pid}
   def start(_type, :ok) do
     unless Mix.env() == :test do
-      [@info_path, @warn_path] |> Enum.each(&LogReset.clear_log/1)
+      [@info_path, @warn_path] |> Enum.each(&Reset.clear_log/1)
     end
 
     [
