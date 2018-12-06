@@ -14,7 +14,7 @@ defmodule Buzzword.Cache.Loader do
   Reads a CSV file of buzzwords (phrases) and their respective point values.
   Returns a map containing the buzzwords as keys and the points as values.
   """
-  @spec read_buzzwords :: map
+  @spec read_buzzwords :: %{String.t() => pos_integer}
   def read_buzzwords do
     import File, only: [stream!: 1]
     import Stream, only: [with_index: 2]
