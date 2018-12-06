@@ -23,7 +23,7 @@ defmodule Buzzword.Cache do
       iex> points
       300
   """
-  @spec get_buzzwords :: map
+  @spec get_buzzwords :: %{String.t() => pos_integer}
   def get_buzzwords do
     GenServer.call(Server, :get_buzzwords)
   end
