@@ -8,8 +8,7 @@ defmodule Buzzword.Cache do
 
   @moduledoc """
   Buzzword Cache for the _Multi-Player Bingo_ game. Returns a map of buzzwords.
-
-  ##### #{@course_ref}
+  \n##### #{@course_ref}
   """
 
   alias __MODULE__.Server

@@ -1,4 +1,11 @@
 defmodule Buzzword.Cache.App.LogReset do
+  @moduledoc """
+  Creates and clears log files.
+  """
+
+  @doc """
+  Creates and clears log files.
+  """
   @spec clear_log(Path.t()) :: :ok
   def clear_log(log_path) do
     log_path = Path.expand(log_path)

@@ -1,4 +1,9 @@
 defmodule Buzzword.Cache.Loader do
+  @moduledoc """
+  Reads a CSV file of buzzwords (phrases) and their respective point values.
+  Returns a map containing the buzzwords as keys and the points as values.
+  """
+
   use PersistConfig
 
   require Logger
@@ -17,6 +22,7 @@ defmodule Buzzword.Cache.Loader do
 
     for {line, index} <- @buzzwords_path |> stream!() |> with_index(1) do
       with [phrase, value] <- line |> split(",") |> Enum.map(&trim/1),
+           length when length >= 3 <- String.length(phrase),
            {points, ""} when points > 0 <- Integer.parse(value) do
         {phrase, points}
       else
@@ -36,7 +42,7 @@ defmodule Buzzword.Cache.Loader do
     """
     \nFile:
     #{@buzzwords_path}
-    Row ##{index} is invalid:
+    Row ##{index} is incorrect:
     #{inspect(line)}
     """
     |> Logger.warn()

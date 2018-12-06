@@ -1,7 +1,7 @@
 defmodule Buzzword.Cache.Server do
   @moduledoc """
   A process that loads a map of buzzwords from an external source
-  and caches them for expedient access. The cache is automatically
+  and caches it for expedient access. The cache is automatically
   refreshed every hour.
   """
 
@@ -13,19 +13,16 @@ defmodule Buzzword.Cache.Server do
 
   @type from :: GenServer.from()
 
-  @refresh_interval Application.get_env(@app, :refresh_interval)
+  @refresh_interval :timer.minutes(60)
 
   @spec start_link(term) :: GenServer.on_start()
-  def start_link(:ok) do
-    GenServer.start_link(Server, :ok, name: Server)
-  end
+  def start_link(:ok), do: GenServer.start_link(Server, :ok, name: Server)
 
   ## Private functions
 
   @spec schedule_refresh :: reference
-  defp schedule_refresh do
-    self() |> Process.send_after(:refresh, @refresh_interval)
-  end
+  defp schedule_refresh,
+    do: self() |> Process.send_after(:refresh, @refresh_interval)
 
   ## Callbacks
 
