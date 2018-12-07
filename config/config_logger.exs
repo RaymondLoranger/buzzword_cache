@@ -37,6 +37,6 @@ config :logger, compile_time_purge_level: :info
 # Uncomment to stop logging...
 # config :logger, level: :error
 
-# truncate_default_in_bytes = 8192
+truncate_default_in_bytes = 8192
 
-# config :logger, truncate: truncate_default_in_bytes * 2
+config :logger, truncate: truncate_default_in_bytes * 2
