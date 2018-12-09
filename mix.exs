@@ -25,7 +25,7 @@ defmodule Buzzword.Cache.MixProject do
     [
       {:mix_tasks,
        github: "RaymondLoranger/mix_tasks", only: :dev, runtime: false},
-      {:log_reset, github: "RaymondLoranger/log_reset"},
+      {:log_reset, "~> 0.1"},
       {:persist_config, "~> 0.1"},
       {:logger_file_backend, "~> 0.0.9"},
       {:earmark, "~> 1.0", only: :dev},
