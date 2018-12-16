@@ -29,10 +29,10 @@ config :logger,
   ]
 
 # Purges debug messages...
-config :logger, compile_time_purge_level: :info
+# config :logger, compile_time_purge_level: :info
 
 # Keeps only error messages...
-# config :logger, compile_time_purge_level: :error
+config :logger, compile_time_purge_level: :error
 
 # Uncomment to stop logging...
 # config :logger, level: :error
