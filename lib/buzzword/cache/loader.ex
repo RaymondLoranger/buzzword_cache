@@ -37,8 +37,10 @@ defmodule Buzzword.Cache.Loader do
 
   ## Private functions
 
-  @spec warn(String.t(), pos_integer) :: :ok
+  @spec warn(String.t(), pos_integer) :: Supervisor.on_start_child()
   defp warn(line, index) do
+    Logger.remove_backend(:console, flush: true)
+
     """
     \nFile:
     #{@buzzwords_path}
@@ -46,5 +48,7 @@ defmodule Buzzword.Cache.Loader do
     #{inspect(line)}
     """
     |> Logger.warn()
+
+    Logger.add_backend(:console, flush: true)
   end
 end
