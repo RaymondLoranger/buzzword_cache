@@ -37,7 +37,7 @@ defmodule Buzzword.Cache.Loader do
 
   ## Private functions
 
-  @spec warn(String.t(), pos_integer) :: Supervisor.on_start_child()
+  @spec warn(String.t(), pos_integer) :: :ok
   defp warn(line, index) do
     Logger.remove_backend(:console, flush: true)
 
@@ -50,5 +50,6 @@ defmodule Buzzword.Cache.Loader do
     |> Logger.warn()
 
     Logger.add_backend(:console, flush: true)
+    :ok
   end
 end
