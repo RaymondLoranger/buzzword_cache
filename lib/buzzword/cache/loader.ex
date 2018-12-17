@@ -26,9 +26,7 @@ defmodule Buzzword.Cache.Loader do
            {points, ""} when points > 0 <- Integer.parse(value) do
         {phrase, points}
       else
-        _error ->
-          warn(line, index)
-          {:error, line}
+        _error -> {:error, warn(line, index)}
       end
     end
     |> Map.new()

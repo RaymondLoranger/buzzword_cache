@@ -12,6 +12,7 @@ defmodule Buzzword.Cache.Server do
   alias Buzzword.Cache.Loader
 
   @type from :: GenServer.from()
+  @type state :: {map, reference}
 
   @refresh_interval :timer.minutes(60)
 
@@ -26,20 +27,19 @@ defmodule Buzzword.Cache.Server do
 
   ## Callbacks
 
-  @spec init(term) :: {:ok, map}
+  @spec init(term) :: {:ok, state}
   def init(:ok) do
-    schedule_refresh()
-    {:ok, Loader.read_buzzwords()}
+    {:ok, {Loader.read_buzzwords(), schedule_refresh()}}
   end
 
-  @spec handle_call(term, from, map) :: {:reply, map, map}
-  def handle_call(:get_buzzwords, _from, buzzwords) do
-    {:reply, buzzwords, buzzwords}
+  @spec handle_call(term, from, state) :: {:reply, map, state}
+  def handle_call(:get_buzzwords, _from, {buzzwords, _timer_ref} = state) do
+    {:reply, buzzwords, state}
   end
 
-  @spec handle_info(term, map) :: {:noreply, map}
-  def handle_info(:refresh, _buzzwords) do
-    schedule_refresh()
-    {:noreply, Loader.read_buzzwords()}
+  @spec handle_info(term, state) :: {:noreply, state}
+  def handle_info(:refresh, {_buzzwords, timer_ref}) do
+    Process.cancel_timer(timer_ref, info: false)
+    {:noreply, {Loader.read_buzzwords(), schedule_refresh()}}
   end
 end
