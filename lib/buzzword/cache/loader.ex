@@ -27,7 +27,7 @@ defmodule Buzzword.Cache.Loader do
         {phrase, points}
       else
         _error ->
-          unless Mix.env() == :test, do: warn(line, index)
+          warn(line, index)
           {:error, line}
       end
     end
@@ -38,18 +38,24 @@ defmodule Buzzword.Cache.Loader do
   ## Private functions
 
   @spec warn(String.t(), pos_integer) :: :ok
-  defp warn(line, index) do
-    Logger.remove_backend(:console, flush: true)
+  defp warn(line, index), do: warn(line, index, Mix.env())
 
-    """
-    \nFile:
-    #{@buzzwords_path}
-    Row ##{index} is incorrect:
-    #{inspect(line)}
-    """
-    |> Logger.warn()
+  @spec warn(String.t(), pos_integer, atom) :: :ok
+  defp warn(_line, _index, :test = _env), do: :ok
 
-    Logger.add_backend(:console, flush: true)
+  defp warn(line, index, _env) do
+    :ok = Logger.remove_backend(:console, flush: true)
+
+    :ok =
+      """
+      \nFile:
+      #{@buzzwords_path}
+      Row ##{index} is incorrect:
+      #{inspect(line)}
+      """
+      |> Logger.warn()
+
+    {:ok, _pid} = Logger.add_backend(:console, flush: true)
     :ok
   end
 end
