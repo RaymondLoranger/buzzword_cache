@@ -9,6 +9,7 @@ defmodule Buzzword.Cache.Loader do
   require Logger
 
   @buzzwords_path Application.get_env(@app, :buzzwords_path)
+  @env Application.get_env(@app, :env)
 
   @doc """
   Reads a CSV file of buzzwords (phrases) and their respective point values.
@@ -36,8 +37,9 @@ defmodule Buzzword.Cache.Loader do
   ## Private functions
 
   @spec warn(String.t(), pos_integer) :: :ok
-  defp warn(line, index), do: warn(line, index, Mix.env())
+  defp warn(line, index), do: warn(line, index, @env)
 
+  @dialyzer {:nowarn_function, warn: 3}
   @spec warn(String.t(), pos_integer, atom) :: :ok
   defp warn(_line, _index, :test = _env), do: :ok
 
