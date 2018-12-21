@@ -6,10 +6,11 @@ defmodule Buzzword.Cache.Loader do
 
   use PersistConfig
 
+  alias Buzzword.Cache.App
+
   require Logger
 
   @buzzwords_path Application.get_env(@app, :buzzwords_path)
-  @env Application.get_env(@app, :env)
 
   @doc """
   Reads a CSV file of buzzwords (phrases) and their respective point values.
@@ -37,25 +38,23 @@ defmodule Buzzword.Cache.Loader do
   ## Private functions
 
   @spec warn(String.t(), pos_integer) :: :ok
-  defp warn(line, index), do: warn(line, index, @env)
+  defp warn(line, index), do: warn(line, index, App.log?())
 
-  @dialyzer {:nowarn_function, warn: 3}
-  @spec warn(String.t(), pos_integer, atom) :: :ok
-  defp warn(_line, _index, :test = _env), do: :ok
+  @spec warn(String.t(), pos_integer, boolean) :: :ok
+  defp warn(_line, _index, false = _log?), do: :ok
 
-  defp warn(line, index, _env) do
-    :ok = Logger.remove_backend(:console, flush: true)
+  defp warn(line, index, true = _log?) do
+    removed = Logger.remove_backend(:console, flush: true)
 
-    :ok =
-      """
-      \nFile:
-      #{@buzzwords_path}
-      Row ##{index} is incorrect:
-      #{inspect(line)}
-      """
-      |> Logger.warn()
+    """
+    \nFile:
+    #{@buzzwords_path}
+    Row ##{index} is incorrect:
+    #{inspect(line)}
+    """
+    |> Logger.warn()
 
-    {:ok, _pid} = Logger.add_backend(:console, flush: true)
+    if removed == :ok, do: Logger.add_backend(:console, flush: true)
     :ok
   end
 end
