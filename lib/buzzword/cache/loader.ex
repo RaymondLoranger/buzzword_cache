@@ -6,11 +6,9 @@ defmodule Buzzword.Cache.Loader do
 
   use PersistConfig
 
-  alias Buzzword.Cache.App
+  alias Buzzword.Cache.Log
 
-  require Logger
-
-  @buzzwords_path Application.get_env(@app, :buzzwords_path)
+  @path Application.get_env(@app, :buzzwords_path)
 
   @doc """
   Reads a CSV file of buzzwords (phrases) and their respective point values.
@@ -22,39 +20,16 @@ defmodule Buzzword.Cache.Loader do
     import Stream, only: [with_index: 2]
     import String, only: [split: 2, trim: 1]
 
-    for {line, index} <- @buzzwords_path |> stream!() |> with_index(1) do
+    for {line, index} <- @path |> stream!() |> with_index(1) do
       with [phrase, value] <- line |> split(",") |> Enum.map(&trim/1),
            length when length >= 3 <- String.length(phrase),
            {points, ""} when points > 0 <- Integer.parse(value) do
         {phrase, points}
       else
-        _error -> {:error, warn(line, index)}
+        _error -> {:error, Log.warn(:row_incorrect, {@path, line, index})}
       end
     end
     |> Map.new()
     |> Map.delete(:error)
-  end
-
-  ## Private functions
-
-  @spec warn(String.t(), pos_integer) :: :ok
-  defp warn(line, index), do: warn(line, index, App.log?())
-
-  @spec warn(String.t(), pos_integer, boolean) :: :ok
-  defp warn(_line, _index, false = _log?), do: :ok
-
-  defp warn(line, index, true = _log?) do
-    removed = Logger.remove_backend(:console, flush: true)
-
-    """
-    \nFile:
-    #{@buzzwords_path}
-    Row ##{index} is incorrect:
-    #{inspect(line)}
-    """
-    |> Logger.warn()
-
-    if removed == :ok, do: Logger.add_backend(:console, flush: true)
-    :ok
   end
 end
