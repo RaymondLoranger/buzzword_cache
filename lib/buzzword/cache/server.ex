@@ -38,7 +38,7 @@ defmodule Buzzword.Cache.Server do
   end
 
   @spec handle_info(term, state) :: {:noreply, state}
-  def handle_info(:refresh, {_buzzwords, timer_ref}) do
+  def handle_info(:refresh, {_buzzwords, timer_ref} = _state) do
     Process.cancel_timer(timer_ref, info: false)
     {:noreply, {Loader.read_buzzwords(), schedule_refresh()}}
   end
