@@ -7,8 +7,8 @@ defmodule Buzzword.Cache.MixProject do
       version: "0.1.5",
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
-      deps: deps(),
-      dialyzer: [plt_add_apps: [:mix]]
+      deps: deps()
+      # dialyzer: [plt_add_apps: [:mix]]
     ]
   end
 
