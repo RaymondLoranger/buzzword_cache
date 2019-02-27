@@ -9,7 +9,7 @@ defmodule Buzzword.Cache.App do
   @spec start(Application.start_type(), term) :: {:ok, pid}
   def start(_type, :ok) do
     [
-      # Child spec relying on use GenServer...
+      # Child spec relying on `use GenServer`...
       {Server, :ok}
     ]
     |> Supervisor.start_link(name: App, strategy: :one_for_one)
