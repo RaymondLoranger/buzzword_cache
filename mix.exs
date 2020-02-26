@@ -4,7 +4,7 @@ defmodule Buzzword.Cache.MixProject do
   def project do
     [
       app: :buzzword_cache,
-      version: "0.1.6",
+      version: "0.1.7",
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       deps: deps()
@@ -16,7 +16,7 @@ defmodule Buzzword.Cache.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {Buzzword.Cache.App, :ok}
+      mod: {Buzzword.Cache.Top, :ok}
     ]
   end
 
@@ -27,7 +27,7 @@ defmodule Buzzword.Cache.MixProject do
        github: "RaymondLoranger/mix_tasks", only: :dev, runtime: false},
       {:log_reset, "~> 0.1"},
       {:file_only_logger, "~> 0.1"},
-      {:persist_config, "~> 0.1"},
+      {:persist_config, "~> 0.1", runtime: false},
       {:logger_file_backend, "~> 0.0.9"},
       {:earmark, "~> 1.0", only: :dev},
       {:ex_doc, "~> 0.14", only: :dev, runtime: false},

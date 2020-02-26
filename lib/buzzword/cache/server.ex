@@ -21,25 +21,24 @@ defmodule Buzzword.Cache.Server do
 
   ## Private functions
 
-  @spec schedule_refresh :: reference
-  defp schedule_refresh,
-    do: self() |> Process.send_after(:refresh, @refresh_interval)
+  @spec state :: state
+  defp state do
+    {Loader.read_buzzwords(),
+     self() |> Process.send_after(:refresh, @refresh_interval)}
+  end
 
   ## Callbacks
 
   @spec init(term) :: {:ok, state}
-  def init(:ok) do
-    {:ok, {Loader.read_buzzwords(), schedule_refresh()}}
-  end
+  def init(:ok), do: {:ok, state()}
 
   @spec handle_call(term, from, state) :: {:reply, map, state}
-  def handle_call(:get_buzzwords, _from, {buzzwords, _timer_ref} = state) do
-    {:reply, buzzwords, state}
-  end
+  def handle_call(:get_buzzwords, _from, {buzzwords, _timer_ref} = state),
+    do: {:reply, buzzwords, state}
 
   @spec handle_info(term, state) :: {:noreply, state}
   def handle_info(:refresh, {_buzzwords, timer_ref} = _state) do
     Process.cancel_timer(timer_ref, info: false)
-    {:noreply, {Loader.read_buzzwords(), schedule_refresh()}}
+    {:noreply, state()}
   end
 end

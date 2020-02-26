@@ -18,10 +18,10 @@ defmodule Buzzword.Cache.IE do
       alias unquote(__MODULE__)
 
       alias Buzzword.Cache.{
-        App,
         Loader,
         Log,
-        Server
+        Server,
+        Top
       }
 
       alias Buzzword.Cache
