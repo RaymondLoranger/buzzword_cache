@@ -6,7 +6,6 @@ defmodule Buzzword.Cache.Server do
   """
 
   use GenServer
-  use PersistConfig
 
   alias __MODULE__
   alias Buzzword.Cache.Loader

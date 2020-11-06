@@ -4,7 +4,7 @@
 defmodule Buzzword.Cache do
   use PersistConfig
 
-  @course_ref Application.get_env(@app, :course_ref)
+  @course_ref get_env(:course_ref)
 
   @moduledoc """
   Buzzword Cache for the _Multi-Player Bingo_ game. Returns a map of buzzwords.

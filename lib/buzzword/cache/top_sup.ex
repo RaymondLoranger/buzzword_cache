@@ -1,4 +1,4 @@
-defmodule Buzzword.Cache.Top do
+defmodule Buzzword.Cache.TopSup do
   @moduledoc false
 
   use Application
@@ -12,6 +12,6 @@ defmodule Buzzword.Cache.Top do
       # Child spec relying on `use GenServer`...
       {Server, :ok}
     ]
-    |> Supervisor.start_link(name: Top, strategy: :one_for_one)
+    |> Supervisor.start_link(name: TopSup, strategy: :one_for_one)
   end
 end

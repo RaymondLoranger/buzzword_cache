@@ -8,7 +8,7 @@ defmodule Buzzword.Cache.Loader do
 
   alias Buzzword.Cache.Log
 
-  @path Application.get_env(@app, :buzzwords_path)
+  @default_path get_env(:buzzwords_default_path)
 
   @doc """
   Reads a CSV file of buzzwords (phrases and their respective point values).
@@ -18,16 +18,23 @@ defmodule Buzzword.Cache.Loader do
   def read_buzzwords do
     import String, only: [trim: 1]
 
-    for {line, index} <- @path |> File.stream!() |> Enum.with_index(1) do
+    path = path()
+
+    for {line, index} <- path |> File.stream!() |> Enum.with_index(1) do
       with [phrase, value] <- line |> String.split(",") |> Enum.map(&trim/1),
            length when length >= 3 <- String.length(phrase),
            {points, ""} when points > 0 <- Integer.parse(value) do
         {phrase, points}
       else
-        _error -> {:error, Log.warn(:line_incorrect, {@path, line, index})}
+        _error -> {:error, Log.warn(:line_incorrect, {path, line, index})}
       end
     end
     |> Map.new()
     |> Map.delete(:error)
   end
+
+  ## Private functions
+
+  @spec path :: Path.t()
+  defp path, do: get_env(:buzzwords_path, @default_path)
 end

@@ -21,7 +21,7 @@ defmodule Buzzword.Cache.IE do
         Loader,
         Log,
         Server,
-        Top
+        TopSup
       }
 
       alias Buzzword.Cache
