@@ -2,13 +2,10 @@
 # │ Based on the course "Multi-Player Bingo" by Mike and Nicole Clark. │
 # └────────────────────────────────────────────────────────────────────┘
 defmodule Buzzword.Cache do
-  use PersistConfig
-
-  @course_ref get_env(:course_ref)
-
   @moduledoc """
   Buzzword Cache for the _Multi-Player Bingo_ game. Returns a map of buzzwords.
-  \n##### #{@course_ref}
+
+  ##### Based on the course [Multi-Player Bingo](https://pragmaticstudio.com/courses/unpacked-bingo) by Mike and Nicole Clark.
   """
 
   alias __MODULE__.Server
