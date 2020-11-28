@@ -8,7 +8,7 @@ defmodule Buzzword.Cache.Loader do
 
   alias Buzzword.Cache.Log
 
-  @default_path get_env(:buzzwords_default_path)
+  @def_buzzwords_path get_env(:def_buzzwords_path)
 
   @doc """
   Reads a CSV file of buzzwords (phrases and their respective point values).
@@ -36,5 +36,5 @@ defmodule Buzzword.Cache.Loader do
   ## Private functions
 
   @spec path :: Path.t()
-  defp path, do: get_env(:buzzwords_path, @default_path)
+  defp path, do: get_env(:buzzwords_path, @def_buzzwords_path)
 end

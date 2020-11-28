@@ -1,4 +1,4 @@
 import Config
 
-config :log_reset, reset?: false
-config :file_only_logger, log?: false
+# config :file_only_logger, log?: true
+# config :log_reset, levels: :all

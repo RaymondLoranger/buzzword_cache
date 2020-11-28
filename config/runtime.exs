@@ -2,5 +2,20 @@ import Config
 
 # config :buzzword_cache, buzzwords_path: "./assets/buzzwords.csv"
 
-config :log_reset, reset?: config_env() in [:prod, :dev]
-config :file_only_logger, log?: config_env() in [:prod, :dev]
+# case config_env() do
+#   :dev ->
+#     config :file_only_logger, log?: true
+#     config :log_reset, levels: :all
+
+#   :prod ->
+#     config :file_only_logger, log?: :true
+#     config :log_reset, levels: :all
+
+#   :test ->
+#     config :file_only_logger, log?: :true
+#     config :log_reset, levels: :all
+
+#   _ ->
+#     config :file_only_logger, log?: true
+#     config :log_reset, levels: :all
+# end

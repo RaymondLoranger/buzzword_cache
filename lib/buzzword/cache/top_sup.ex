@@ -1,6 +1,4 @@
 defmodule Buzzword.Cache.TopSup do
-  @moduledoc false
-
   use Application
 
   alias __MODULE__
