@@ -24,7 +24,7 @@ config :logger, :error_log, format: format, path: error_path, level: :error
 
 config :logger,
   backends: [
-    # :console,
+    :console,
     {LoggerFileBackend, :debug_log},
     {LoggerFileBackend, :info_log},
     {LoggerFileBackend, :warn_log},

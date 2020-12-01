@@ -8,12 +8,12 @@ import Config
 #     config :log_reset, levels: :all
 
 #   :prod ->
-#     config :file_only_logger, log?: :true
+#     config :file_only_logger, log?: true
 #     config :log_reset, levels: :all
 
 #   :test ->
-#     config :file_only_logger, log?: :true
-#     config :log_reset, levels: :all
+#     config :file_only_logger, log?: true
+#     config :log_reset, levels: :none
 
 #   _ ->
 #     config :file_only_logger, log?: true

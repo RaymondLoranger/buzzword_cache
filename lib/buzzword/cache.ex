@@ -21,9 +21,7 @@ defmodule Buzzword.Cache do
       300
   """
   @spec get_buzzwords :: %{String.t() => pos_integer}
-  def get_buzzwords do
-    GenServer.call(Server, :get_buzzwords)
-  end
+  def get_buzzwords, do: GenServer.call(Server, :get_buzzwords)
 
   @doc """
   Refreshes the cache from the configured external source and resets the timer.

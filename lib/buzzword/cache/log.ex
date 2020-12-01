@@ -1,9 +1,11 @@
 defmodule Buzzword.Cache.Log do
   use File.Only.Logger
 
-  warn :line_incorrect, {path, line, index} do
+  error :line_incorrect, {path, line, index, env} do
     """
     \nLine incorrect...
+    • Inside function:
+      #{fun(env)}
     • File:
       #{path}
     • Line number: #{index}

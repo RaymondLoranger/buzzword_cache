@@ -40,4 +40,6 @@ defmodule Buzzword.Cache.Server do
     Process.cancel_timer(timer_ref, info: false)
     {:noreply, state()}
   end
+
+  def handle_info(_message, state), do: {:noreply, state}
 end
