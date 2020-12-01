@@ -1,6 +1,6 @@
 defmodule Buzzword.Cache.Server do
   @moduledoc """
-  A process that loads a map of buzzwords from an external source
+  A process that loads a map of buzzwords from an external file
   and caches it for expedient access. The cache is automatically
   refreshed every hour.
   """
