@@ -10,7 +10,7 @@ defmodule Buzzword.Cache.Log do
       #{path}
     • Line number: #{index}
     • Line:
-      #{inspect(line, pretty: true)}
+      #{inspect(line)}
     • Correct format:
       "<phrase of 3 or more chars>,<integer points greater than 0>"
     #{from()}
