@@ -20,8 +20,8 @@ defmodule Buzzword.Cache.Loader do
 
     path = path() |> Path.expand()
 
-    for {line, index} <- path |> File.stream!() |> Enum.with_index(1) do
-      with [phrase, value] <- line |> String.split(",") |> Enum.map(&trim/1),
+    for {line, index} <- File.stream!(path) |> Enum.with_index(1) do
+      with [phrase, value] <- String.split(line, ",") |> Enum.map(&trim/1),
            length when length >= 3 <- String.length(phrase),
            {points, ""} when points > 0 <- Integer.parse(value) do
         {phrase, points}
