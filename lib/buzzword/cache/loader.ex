@@ -7,6 +7,7 @@ defmodule Buzzword.Cache.Loader do
   use PersistConfig
 
   alias Buzzword.Cache.Log
+  alias Buzzword.Cache
 
   @def_buzzwords_path get_env(:def_buzzwords_path)
 
@@ -14,7 +15,7 @@ defmodule Buzzword.Cache.Loader do
   Reads a CSV file of buzzwords (phrases and their respective point values).
   Returns a map containing the phrases as keys and the points as values.
   """
-  @spec read_buzzwords :: %{String.t() => pos_integer}
+  @spec read_buzzwords :: Cache.buzzwords()
   def read_buzzwords do
     import String, only: [trim: 1]
 

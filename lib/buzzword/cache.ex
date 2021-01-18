@@ -9,6 +9,10 @@ defmodule Buzzword.Cache do
   """
 
   alias __MODULE__.Server
+  alias Buzzword.Bingo.Square
+
+  @type buzzword :: {Square.phrase(), Square.points()}
+  @type buzzwords :: %{Square.phrase() => Square.points()}
 
   @doc """
   Returns a map of buzzwords.
@@ -20,7 +24,7 @@ defmodule Buzzword.Cache do
       iex> points
       300
   """
-  @spec get_buzzwords :: %{String.t() => pos_integer}
+  @spec get_buzzwords :: buzzwords
   def get_buzzwords, do: GenServer.call(Server, :get_buzzwords)
 
   @doc """

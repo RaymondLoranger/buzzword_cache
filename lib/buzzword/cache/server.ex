@@ -9,9 +9,10 @@ defmodule Buzzword.Cache.Server do
 
   alias __MODULE__
   alias Buzzword.Cache.Loader
+  alias Buzzword.Cache
 
   @type from :: GenServer.from()
-  @type state :: {map, reference}
+  @type state :: {Cache.buzzwords(), reference}
 
   @refresh_interval :timer.minutes(60)
 
@@ -31,7 +32,7 @@ defmodule Buzzword.Cache.Server do
   @spec init(term) :: {:ok, state}
   def init(:ok), do: {:ok, state()}
 
-  @spec handle_call(term, from, state) :: {:reply, map, state}
+  @spec handle_call(term, from, state) :: {:reply, Cache.buzzwords(), state}
   def handle_call(:get_buzzwords, _from, {buzzwords, _timer_ref} = state),
     do: {:reply, buzzwords, state}
 
