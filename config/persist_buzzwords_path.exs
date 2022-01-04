@@ -1,3 +1,3 @@
 import Config
 
-config :buzzword_cache, buzzwords_path: "#{File.cwd!()}/assets/buzzwords.csv"
+config :buzzword_cache, default_buzzwords_path: "./assets/buzzwords.csv"
