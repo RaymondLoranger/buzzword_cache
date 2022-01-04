@@ -1,6 +1,6 @@
 # Buzzword Cache
 
-Buzzword Cache for the _Multi-Player Bingo_ game. Returns a map of buzzwords.
+Buzzword Cache for the _Multi-Player Bingo_ game.
 
 ##### Based on the course [Multi-Player Bingo](https://pragmaticstudio.com/courses/unpacked-bingo) by Mike and Nicole Clark.
 

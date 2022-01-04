@@ -1,8 +1,7 @@
 defmodule Buzzword.Cache.Server do
   @moduledoc """
-  A process that loads a map of buzzwords from an external file
-  and caches it for expedient access. The cache is automatically
-  refreshed every hour.
+  A process that loads a map of buzzwords from an external file and caches it
+  for expedient access. The cache is automatically refreshed every hour.
   """
 
   use GenServer
@@ -11,13 +10,14 @@ defmodule Buzzword.Cache.Server do
   alias Buzzword.Cache.Loader
   alias Buzzword.Cache
 
-  @type from :: GenServer.from()
+  @typedoc "Server state"
   @type state :: {Cache.buzzwords(), reference}
 
   @refresh_interval :timer.minutes(60)
 
   @spec start_link(term) :: GenServer.on_start()
-  def start_link(:ok), do: GenServer.start_link(Server, :ok, name: Server)
+  def start_link(:ok = _init_arg),
+    do: GenServer.start_link(Server, :ok, name: Server)
 
   ## Private functions
 
@@ -30,9 +30,10 @@ defmodule Buzzword.Cache.Server do
   ## Callbacks
 
   @spec init(term) :: {:ok, state}
-  def init(:ok), do: {:ok, state()}
+  def init(:ok = _init_arg), do: {:ok, state()}
 
-  @spec handle_call(term, from, state) :: {:reply, Cache.buzzwords(), state}
+  @spec handle_call(atom, GenServer.from(), state) ::
+          {:reply, Cache.buzzwords(), state}
   def handle_call(:get_buzzwords, _from, {buzzwords, _timer_ref} = state),
     do: {:reply, buzzwords, state}
 

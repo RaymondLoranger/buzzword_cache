@@ -4,7 +4,7 @@ defmodule Buzzword.Cache.MixProject do
   def project do
     [
       app: :buzzword_cache,
-      version: "0.1.17",
+      version: "0.1.18",
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       deps: deps()
@@ -23,7 +23,6 @@ defmodule Buzzword.Cache.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:buzzword_bingo_square, github: "RaymondLoranger/buzzword_bingo_square"},
       {:dialyxir, "~> 1.0", only: :dev, runtime: false},
       {:ex_doc, "~> 0.22", only: :dev, runtime: false},
       {:file_only_logger, "~> 0.1"},

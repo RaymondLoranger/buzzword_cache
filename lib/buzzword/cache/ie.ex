@@ -7,11 +7,11 @@ defmodule Buzzword.Cache.IE do
   #
   #   use Buzzword.Cache.IE
   #   Cache.get_buzzwords
-  #   => change assets/buzzwords_by_default.csv
+  #   => change assets/buzzwords.csv
   #   Cache.refresh
   #   Cache.get_buzzwords
   #   => see that the change is reflected
-  #   => change back assets/buzzwords_by_default.csv
+  #   => change back assets/buzzwords.csv
 
   defmacro __using__(_options) do
     quote do
