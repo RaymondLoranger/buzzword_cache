@@ -6,7 +6,7 @@ defmodule Buzzword.CacheTest do
   doctest Cache
 
   describe "Cache.get_buzzwords/0" do
-    test "returns a map" do
+    test "returns a map of buzzwords from the cache" do
       %{
         "Low-Hanging Fruit" => fruit_points,
         "Mission Critical" => mission_points
