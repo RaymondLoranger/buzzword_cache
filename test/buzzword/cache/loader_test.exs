@@ -7,10 +7,6 @@ defmodule Buzzword.Cache.LoaderTest do
            when is_tuple(term) and is_binary(elem(term, 0)) and
                   is_integer(elem(term, 1))
 
-  # Disable explicit loader test file logging...
-  # The logs should have only startup logging...
-  Application.put_env(:file_only_logger, :level, :none, persistent: true)
-
   doctest Loader
 
   describe "Loader.read_buzzwords/0" do

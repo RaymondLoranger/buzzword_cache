@@ -4,7 +4,7 @@ defmodule Buzzword.Cache.MixProject do
   def project do
     [
       app: :buzzword_cache,
-      version: "0.1.23",
+      version: "0.1.24",
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       deps: deps()
