@@ -1,3 +1,3 @@
-# Disable file logging for tests. Only file logging at startup is happening...
+# Disable file logging for tests.
 Application.put_env(:file_only_logger, :level, :none, persistent: true)
 ExUnit.start()
