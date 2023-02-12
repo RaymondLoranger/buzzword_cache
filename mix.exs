@@ -4,7 +4,7 @@ defmodule Buzzword.Cache.MixProject do
   def project do
     [
       app: :buzzword_cache,
-      version: "0.1.31",
+      version: "0.1.32",
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       deps: deps()
@@ -25,7 +25,7 @@ defmodule Buzzword.Cache.MixProject do
     [
       {:dialyxir, "~> 1.0", only: :dev, runtime: false},
       {:ex_doc, "~> 0.22", only: :dev, runtime: false},
-      {:file_only_logger, "~> 0.1"},
+      {:file_only_logger, "~> 0.2"},
       {:log_reset, "~> 0.1"},
       {:persist_config, "~> 0.4", runtime: false}
     ]
