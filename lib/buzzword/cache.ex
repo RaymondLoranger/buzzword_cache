@@ -3,7 +3,7 @@
 # └────────────────────────────────────────────────────────────────────┘
 defmodule Buzzword.Cache do
   @moduledoc """
-  Buzzword Cache for the _Multi-Player Bingo_ game.
+  Buzzword Cache for the _Multi-Player Buzzword Bingo_ game.
   The cache is automatically refreshed every hour.
 
   ##### Based on the course [Multi-Player Bingo](https://pragmaticstudio.com/courses/unpacked-bingo) by Mike and Nicole Clark.
