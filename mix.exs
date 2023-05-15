@@ -4,11 +4,34 @@ defmodule Buzzword.Cache.MixProject do
   def project do
     [
       app: :buzzword_cache,
-      version: "0.1.32",
+      version: "0.1.1",
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
+      name: "Buzzword Cache",
+      source_url: source_url(),
+      description: description(),
+      package: package(),
       deps: deps()
       # dialyzer: [plt_add_apps: [:mix]]
+    ]
+  end
+
+  defp source_url do
+    "https://github.com/RaymondLoranger/buzzword_cache"
+  end
+
+  defp description do
+    """
+    Buzzword Cache for the Multi-Player Buzzword Bingo game.
+    """
+  end
+
+  defp package do
+    [
+      files: ["lib", "mix.exs", "README*", "config/persist*.exs"],
+      maintainers: ["Raymond Loranger"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => source_url()}
     ]
   end
 
