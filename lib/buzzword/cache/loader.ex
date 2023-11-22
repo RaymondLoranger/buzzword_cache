@@ -35,7 +35,7 @@ defmodule Buzzword.Cache.Loader do
         {phrase, points}
       else
         _ ->
-          :ok = Log.warn(:line_incorrect, {path, line, index, __ENV__})
+          :ok = Log.warning(:line_incorrect, {path, line, index, __ENV__})
           {:error, :line_incorrect}
       end
     end
