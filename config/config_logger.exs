@@ -24,12 +24,12 @@ error_path = ~c"#{root_dir}/log/error.log"
 formatter =
   Logger.Formatter.new(
     format: format,
+    # Prevents ANSI escape sequences in log files.
     colors: [enabled: false],
     truncate: truncate_in_bytes
   )
 
 config :logger, :default_formatter,
-  format: format,
   colors: colors,
   truncate: truncate_in_bytes
 

@@ -16,7 +16,7 @@ defmodule Buzzword.Cache.Server do
   @refresh_interval :timer.minutes(60)
 
   @spec start_link(term) :: GenServer.on_start()
-  def start_link(:ok = _init_arg),
+  def start_link(_init_arg = :ok),
     do: GenServer.start_link(Server, :ok, name: Server)
 
   ## Private functions
@@ -30,7 +30,7 @@ defmodule Buzzword.Cache.Server do
   ## Callbacks
 
   @spec init(term) :: {:ok, state}
-  def init(:ok = _init_arg), do: {:ok, state()}
+  def init(_init_arg = :ok), do: {:ok, state()}
 
   @spec handle_call(atom, GenServer.from(), state) ::
           {:reply, Cache.buzzwords(), state}
