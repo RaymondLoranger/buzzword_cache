@@ -1,15 +1,15 @@
-defmodule Buzzword.Cache.IE do
+defmodule Buzzword.IE do
   @moduledoc false
 
   # Example of an IEx session...
   #
   #   iex -S mix
   #
-  #   use Buzzword.Cache.IE
-  #   Cache.get_buzzwords
+  #   use Buzzword.IE
+  #   Cache.get_buzzwords()
   #   => change "assets/buzzwords.csv"
-  #   Cache.refresh
-  #   Cache.get_buzzwords
+  #   Cache.refresh()
+  #   Cache.get_buzzwords()
   #   => see that the change is reflected
   #   => change back "assets/buzzwords.csv"
 

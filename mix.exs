@@ -4,7 +4,7 @@ defmodule Buzzword.Cache.MixProject do
   def project do
     [
       app: :buzzword_cache,
-      version: "0.1.13",
+      version: "0.1.14",
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       name: "Buzzword Cache",
@@ -29,7 +29,7 @@ defmodule Buzzword.Cache.MixProject do
   defp package do
     [
       files: [
-        "lib",
+        "lib/buzzword/{cache,cache.ex}",
         "mix.exs",
         "README*",
         "config/persist*.exs",

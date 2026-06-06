@@ -34,8 +34,8 @@ defmodule Buzzword.Cache.Loader do
            {points, ""} when points > 0 <- Integer.parse(value) do
         {phrase, points}
       else
-        _ ->
-          :ok = Log.warning(:line_incorrect, {path, line, index, __ENV__})
+        _line_incorrect ->
+          :ok = Log.warning(:line_incorrect, {path, trim(line), index, __ENV__})
           {:error, :line_incorrect}
       end
     end

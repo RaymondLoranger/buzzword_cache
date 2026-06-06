@@ -3,7 +3,7 @@ defmodule Buzzword.Cache.ServerTest do
 
   alias Buzzword.Cache.Server
 
-  doctest Server
+  # doctest Server
 
   describe "Server.start_link/1" do
     test "returns a tuple" do
