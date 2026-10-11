@@ -27,6 +27,7 @@ defmodule Buzzword.Cache.Loader do
     import String, only: [trim: 1]
 
     path = buzzwords_path() |> Path.expand()
+    Log.info(:reading_buzzwords, {path, __ENV__})
 
     for {line, index} <- File.stream!(path) |> Enum.with_index(1), into: %{} do
       with [phrase, value] <- String.split(line, ",") |> Enum.map(&trim/1),

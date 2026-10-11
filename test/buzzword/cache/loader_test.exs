@@ -12,7 +12,7 @@ defmodule Buzzword.Cache.LoaderTest do
   doctest Loader
 
   describe "Loader.read_buzzwords/0" do
-    test "returns a map of buzzwords from the CSV file" do
+    test "returns a buzzwords map from the CSV file" do
       buzzwords = Loader.read_buzzwords()
       assert is_map(buzzwords)
       assert Enum.all?(buzzwords, &is_buzzword/1)

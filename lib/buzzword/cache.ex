@@ -21,7 +21,7 @@ defmodule Buzzword.Cache do
   @type points :: pos_integer
 
   @doc """
-  Returns a map of buzzwords from the cache.
+  Returns a buzzwords map from the cache.
 
   ## Examples
 
