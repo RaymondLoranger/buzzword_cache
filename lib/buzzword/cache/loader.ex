@@ -25,11 +25,12 @@ defmodule Buzzword.Cache.Loader do
   @spec read_buzzwords :: Cache.buzzwords()
   def read_buzzwords do
     import String, only: [trim: 1]
+    import Stream, only: [with_index: 2]
 
     path = buzzwords_path() |> Path.expand()
     Log.info(:reading_buzzwords, {path, __ENV__})
 
-    for {line, index} <- File.stream!(path) |> Enum.with_index(1), into: %{} do
+    for {line, index} <- File.stream!(path) |> with_index(1), into: %{} do
       with [phrase, value] <- String.split(line, ",") |> Enum.map(&trim/1),
            length when length >= 3 <- String.length(phrase),
            {points, ""} when points > 0 <- Integer.parse(value) do

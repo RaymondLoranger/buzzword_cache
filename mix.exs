@@ -4,7 +4,7 @@ defmodule Buzzword.Cache.MixProject do
   def project do
     [
       app: :buzzword_cache,
-      version: "0.1.16",
+      version: "0.1.17",
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       name: "Buzzword Cache",
@@ -28,13 +28,8 @@ defmodule Buzzword.Cache.MixProject do
 
   defp package do
     [
-      files: [
-        "lib/buzzword/{cache,cache.ex}",
-        "mix.exs",
-        "README*",
-        "config/persist*.exs",
-        "assets/buzzwords.csv"
-      ],
+      files: ~w[lib mix.exs README* config/persist*.exs assets/buzzwords.csv],
+      exclude_patterns: ["lib/buzzword/cache/ie.ex"],
       maintainers: ["Raymond Loranger"],
       licenses: ["MIT"],
       links: %{"GitHub" => source_url()}

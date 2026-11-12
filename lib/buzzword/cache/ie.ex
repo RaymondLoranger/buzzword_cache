@@ -1,11 +1,11 @@
-defmodule Buzzword.IE do
+defmodule Buzzword.Cache.IE do
   @moduledoc false
 
   # Example of an IEx session...
   #
   #   iex -S mix
   #
-  #   use Buzzword.IE
+  #   use Buzzword.Cache.IE
   #   Cache.get_buzzwords()
   #   => change "assets/buzzwords.csv"
   #   Cache.refresh()
@@ -24,6 +24,7 @@ defmodule Buzzword.IE do
         TopSup
       }
 
+      alias Buzzword.Cache.Log.TimeUtil
       alias Buzzword.Cache
       :ok
     end

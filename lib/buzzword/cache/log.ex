@@ -16,22 +16,22 @@ defmodule Buzzword.Cache.Log do
   end
 
   info :automatic_refresh, {refresh_interval, env} do
-    gone = TimeUtil.split(refresh_interval) |> TimeUtil.format()
+    elapsed = TimeUtil.split(refresh_interval) |> TimeUtil.format()
 
     """
     \nBuzzword cache automatically refreshed...
-    • Interval: #{inspect(refresh_interval)} ms (#{gone})
+    • Interval: #{inspect(refresh_interval)} ms (#{elapsed})
     #{from(env, __MODULE__)}\
     """
   end
 
   info :explicit_refresh, {time_elapsed, time_left, env} do
-    gone = TimeUtil.split(time_elapsed) |> TimeUtil.format()
+    elapsed = TimeUtil.split(time_elapsed) |> TimeUtil.format()
     left = TimeUtil.split(time_left) |> TimeUtil.format()
 
     """
     \nBuzzword cache explicitly refreshed...
-    • Time elapsed: #{inspect(time_elapsed)} ms (#{gone})
+    • Time elapsed: #{inspect(time_elapsed)} ms (#{elapsed})
     • Time left: #{inspect(time_left)} ms (#{left})
     #{from(env, __MODULE__)}\
     """

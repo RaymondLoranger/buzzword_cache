@@ -30,6 +30,7 @@ formatter =
   )
 
 config :logger, :default_formatter,
+  format: format,
   colors: colors,
   truncate: truncate_in_bytes
 
@@ -81,5 +82,4 @@ config :file_only_logger, :logger, [
 #     _error -> 80
 #   end
 
-# Changes here require to recompile app :file_only_logger.
-config :file_only_logger, line_length: 80, padding: "\s\s"
+# config :file_only_logger, level: :all, line_length: 80, padding: "\s\s"

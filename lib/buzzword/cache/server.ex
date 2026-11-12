@@ -14,6 +14,7 @@ defmodule Buzzword.Cache.Server do
   @type state :: {Cache.buzzwords(), reference}
 
   @refresh_interval :timer.minutes(60)
+  # @refresh_interval :timer.seconds(60)
 
   @spec start_link(term) :: GenServer.on_start()
   def start_link(_init_arg = :ok),

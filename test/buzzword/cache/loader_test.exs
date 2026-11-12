@@ -4,10 +4,10 @@ defmodule Buzzword.Cache.LoaderTest do
   alias Buzzword.Cache.Loader
 
   # Assuming only ASCII characters...
-  defguard is_buzzword(term)
-           when is_tuple(term) and elem(term, 0) |> is_binary() and
-                  elem(term, 0) |> byte_size() >= 3 and
-                  elem(term, 1) |> is_integer() and elem(term, 1) > 0
+  defguard is_buzzword(tuple)
+           when is_tuple(tuple) and elem(tuple, 0) |> is_binary() and
+                  elem(tuple, 0) |> byte_size() >= 3 and
+                  elem(tuple, 1) |> is_integer() and elem(tuple, 1) > 0
 
   doctest Loader
 
