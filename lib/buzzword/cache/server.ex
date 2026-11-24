@@ -43,7 +43,7 @@ defmodule Buzzword.Cache.Server do
   @spec state :: state
   defp state do
     {Loader.read_buzzwords(),
-     self() |> Process.send_after(:refresh, @refresh_interval)}
+     Process.send_after(self(), :refresh, @refresh_interval)}
   end
 
   @spec log_refresh(non_neg_integer | false) :: :ok
